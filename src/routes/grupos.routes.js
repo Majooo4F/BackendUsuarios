@@ -1,13 +1,13 @@
-import express from "express";
-import { createGrupo, getGrupos } from "../controllers/grupos.controller.js";
-import { verifyToken } from "../middlewares/auth.middleware.js";
+// import express from "express";
+// import { createGrupo, getGrupos } from "../controllers/grupos.controller.js";
+// import { verifyToken } from "../middlewares/auth.middleware.js";
 
-const router = express.Router();
+// const router = express.Router();
 
-// GET grupos
-router.get("/", getGrupos);
+// // GET grupos
+// router.get("/", getGrupos);
 
-// POST crear grupo (protegido con token)
-router.post("/", verifyToken, createGrupo);
+// // POST crear grupo (protegido con token)
+// router.post("/", verifyToken, createGrupo);
 
-export default router;
+// export default router;

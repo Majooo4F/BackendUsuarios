@@ -1,30 +1,25 @@
-import express from "express"
-import cors from "cors"
-import dotenv from "dotenv"
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 
-import usuariosRoutes from "./routes/usuarios.routes.js"
-import gruposRoutes from "./routes/grupos.routes.js"
-import grupoMiembrosRoutes from "./routes/grupoMiembros.routes.js"
-import adminUsuariosRoutes from "./routes/adminUsuarios.routes.js"
-import permisosRoutes from "./routes/Permisos.routes.js"; // 🔹 Importa tu router de permisos
-dotenv.config()
+import usuariosRoutes from "./routes/usuarios.routes.js";
+import adminUsuariosRoutes from "./routes/adminUsuarios.routes.js";
 
-const app = express()
+dotenv.config();
+const app = express();
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
-app.use("/usuarios", usuariosRoutes)
-app.use("/grupos", gruposRoutes) 
-app.use("/grupo-miembros", grupoMiembrosRoutes)
-app.use("/admin/usuarios", adminUsuariosRoutes)
-app.use("/permisos", permisosRoutes)
+// ⚡ Prefijo /users para coincidir con el gateway
+app.use("/users", usuariosRoutes);
+app.use("/users/admin", adminUsuariosRoutes); // ← cambia de /admin/usuarios a /users/admin
+
 app.get("/", (req, res) => {
-  res.json({ mensaje: "Backend ERP funcionando 🚀" })
-})
+  res.json({ mensaje: "User Service funcionando 🚀" });
+});
 
-const PORT = process.env.PORT || 3000
-
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Servidor en puerto ${PORT}`)
-})
+  console.log(`User Service corriendo en puerto ${PORT}`);
+});

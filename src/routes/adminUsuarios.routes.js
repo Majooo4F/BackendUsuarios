@@ -7,20 +7,11 @@ import {
   getUsuariosAdmin
 } from "../controllers/adminUsuarios.controller.js"
 
-import { verifyToken } from "../middlewares/auth.middleware.js"
-
 const router = express.Router()
 
-// 🔹 obtener usuarios
-router.get("/", verifyToken, getUsuariosAdmin)
+router.get("/", getUsuariosAdmin)
+router.post("/", createUserAdmin)
+router.put("/:id", updateUserAdmin)
+router.delete("/:id", deleteUserAdmin)
 
-// 🔹 crear usuario
-router.post("/", verifyToken, createUserAdmin)
-
-// 🔹 editar usuario
-router.put("/:id", verifyToken, updateUserAdmin)
-
-// 🔹 eliminar usuario
-router.delete("/:id", verifyToken, deleteUserAdmin)
-router.get("/", verifyToken, getUsuariosAdmin)
 export default router
