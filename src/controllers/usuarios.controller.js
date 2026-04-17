@@ -160,6 +160,7 @@ export const login = async (req, res) => {
       .from("grupo_usuario_permisos")
       .select("permiso_id, permisos(nombre)")
       .eq("usuario_id", user.id)
+      .eq("activo", true)
 
     const permisos = [
       ...new Set(permisoData?.map(p => p.permisos?.nombre).filter(Boolean) || [])
